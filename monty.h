@@ -36,13 +36,15 @@ typedef struct instruction_s
 
 typedef struct hero
 {
+	FILE *fp_struct;
 	int node_data;
 	char *getl_info;
+	char *command_struct;
 	stack_t *stack_head;
-	char **grid;
-} hero;
 
-extern hero savior;
+} hero_t;
+
+extern hero_t savior;
 
 char **str_to_2d(char *buff_str, char del[]);
 int opcode(char *file_line, stack_t **stack, unsigned int n_lines);
@@ -51,4 +53,6 @@ void op_pall(stack_t **stack, unsigned int line_number);
 void free_grid(char **grid);
 void free_dlistint(stack_t *head);
 void is_digit(char *number, unsigned int n_lines);
+char *get_number(char *str_to_div, unsigned int n_lines);
+char *str_div(char *str_to_div);
 #endif /* MONTY_H */
