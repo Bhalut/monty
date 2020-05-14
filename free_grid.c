@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  * free_dlistint - Frees a double linked list
  * @head: Address of the head of the linked list
@@ -20,16 +21,21 @@ void free_dlistint(stack_t *head)
 		free(tmp_1);
 		tmp_1 = tmp_2;
 	}
+
 	free(head);
 }
+
+/**
+ * is_digit - check is digit
+ * @number: character for check
+ * @n_lines: number of line in file
+ *
+ * Return: void
+ */
 void is_digit(char *number, unsigned int n_lines)
 {
-	unsigned int i;
+	unsigned int i = 0;
 
-	/* printf("el numero actual es: %s\n", number);
-	printf("n_lines es: %u\n", n_lines); */
-	printf("Estoy en is digit\n");
-	printf("El no es : %s\n", number);
 	if (number == NULL)
 	{
 		free(number);
@@ -42,23 +48,16 @@ void is_digit(char *number, unsigned int n_lines)
 	}
 	if (number[0] != '-' && (number[0] < 48 || number[0] > 57))
 	{
-		printf("Diferente de digito\n");
-		printf("Libero number %s\n", number);
 		free(number);
-		printf("Libero el comando %s\n", savior.command_struct);
 		free(savior.command_struct);
-		printf("Libero el getline %s\n", savior.getl_info);
 		free(savior.getl_info);
-		printf("Libero el stack\n");
 		free_dlistint(savior.stack_head);
-		printf("Cierro el file \n");
 		fclose(savior.fp_struct);
 		fprintf(stderr, "L'%u': usage: push integer\n", n_lines);
 		exit(EXIT_FAILURE);
 	}
 	for (i = 1; number[i] != '\0'; i++)
 	{
-
 		if (number[i] < 48 || number[i] > 57)
 		{
 			free(number);
@@ -71,6 +70,13 @@ void is_digit(char *number, unsigned int n_lines)
 		}
 	}
 }
+
+/**
+ * str_div - divition by string
+ * @str_to_div: string to check
+ *
+ * Return: split string
+ */
 char *str_div(char *str_to_div)
 {
 	char *str_aux = NULL;

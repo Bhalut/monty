@@ -1,4 +1,12 @@
 #include "monty.h"
+
+/**
+ * get_number - check of number by instruction
+ * @str_to_div: string to check
+ * @n_lines: number of line in file
+ *
+ * Return: character numbers
+ */
 char *get_number(char *str_to_div, unsigned int n_lines)
 {
 	char *str_aux = NULL;
@@ -9,6 +17,7 @@ char *get_number(char *str_to_div, unsigned int n_lines)
 	{
 		return (NULL);
 	}
+
 	token = strtok(str_aux, " \n\t\r");
 	token = strtok(NULL, " \n\t\r");
 	if (token == NULL)
