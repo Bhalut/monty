@@ -1,22 +1,5 @@
 #include "monty.h"
 /**
- * free_grid - frees a 2 dimensional grid previously created.
- * @grid: bidimensional array.
- * @height: height array.
- *
- * Return: pointer with the address of the array created.
- */
-void free_grid(char **grid)
-{
-	int index;
-
-	for (index = 0; grid[index] != NULL; index++)
-	{
-		free(grid[index]);
-	}
-	free(grid);
-}
-/**
  * free_dlistint - Frees a double linked list
  * @head: Address of the head of the linked list
  *
@@ -45,11 +28,31 @@ void is_digit(char *number, unsigned int n_lines)
 
 	/* printf("el numero actual es: %s\n", number);
 	printf("n_lines es: %u\n", n_lines); */
+	printf("Estoy en is digit\n");
+	printf("El no es : %s\n", number);
+	if (number == NULL)
+	{
+		free(number);
+		free(savior.command_struct);
+		free(savior.getl_info);
+		free_dlistint(savior.stack_head); /* verificar */
+		fclose(savior.fp_struct);
+		fprintf(stderr, "L'%u': usage: push integer\n", n_lines);
+		exit(EXIT_FAILURE);
+	}
 	if (number[0] != '-' && (number[0] < 48 || number[0] > 57))
 	{
-		free_grid(savior.grid);
+		printf("Diferente de digito\n");
+		printf("Libero number %s\n", number);
+		free(number);
+		printf("Libero el comando %s\n", savior.command_struct);
+		free(savior.command_struct);
+		printf("Libero el getline %s\n", savior.getl_info);
 		free(savior.getl_info);
+		printf("Libero el stack\n");
 		free_dlistint(savior.stack_head);
+		printf("Cierro el file \n");
+		fclose(savior.fp_struct);
 		fprintf(stderr, "L'%u': usage: push integer\n", n_lines);
 		exit(EXIT_FAILURE);
 	}
@@ -58,11 +61,27 @@ void is_digit(char *number, unsigned int n_lines)
 
 		if (number[i] < 48 || number[i] > 57)
 		{
-			free_grid(savior.grid);
+			free(number);
+			free(savior.command_struct);
 			free(savior.getl_info);
-			free_dlistint(savior.stack_head);
+			free_dlistint(savior.stack_head); /* verificar */
+			fclose(savior.fp_struct);
 			fprintf(stderr, "L'%u': usage: push integer\n", n_lines);
 			exit(EXIT_FAILURE);
 		}
 	}
+}
+char *str_div(char *str_to_div)
+{
+	char *str_aux = NULL;
+	char *token = NULL;
+
+	str_aux = strdup(str_to_div);
+	if (str_aux == NULL)
+	{
+		return (NULL);
+	}
+	token = strtok(str_aux, " \n\t\r");
+
+	return (token);
 }
