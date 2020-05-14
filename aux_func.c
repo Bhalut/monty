@@ -16,7 +16,7 @@ char *get_number(char *str_to_div, unsigned int n_lines)
 		free(str_aux);
 		free(savior.command_struct);
 		free(savior.getl_info);
-		free_dlistint(savior.stack_head); /* verificar */
+		free_dlistint(savior.stack_head);
 		fclose(savior.fp_struct);
 		fprintf(stderr, "L'%u': usage: push integer\n", n_lines);
 		exit(EXIT_FAILURE);
