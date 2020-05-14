@@ -1,5 +1,6 @@
 #include "monty.h"
 /**
+ * 
  * op_push - adds a new node at the stack
  * @stack: pointer to the head of the stack
  * @line_number: number of the current line
@@ -8,17 +9,18 @@
  */
 void op_push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp;
-	stack_t *new;
+	stack_t *tmp = NULL;
+	stack_t *new = NULL;
 
 	line_number = line_number;
 	/* printf("start push function\n"); */
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		free_grid(savior.grid);
 		free(savior.getl_info);
 		free_dlistint(savior.stack_head);
+		free(savior.command_struct);
+		fclose(savior.fp_struct);
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
