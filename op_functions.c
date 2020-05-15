@@ -81,7 +81,7 @@ void op_pint(stack_t **stack, unsigned int line_number)
  */
 void op_swap(stack_t **stack, unsigned int line_number)
 {
-	int tmp;
+	int tmp = 0;
 
 	if ((*stack) == NULL || (*stack)->next == NULL)
 	{
