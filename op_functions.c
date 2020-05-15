@@ -79,10 +79,17 @@ void op_pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *printer_aux = *stack;
 
+	while (printer_aux->next != NULL)
+	{
+		printer_aux = printer_aux->next;
+	}
+
 	if (printer_aux == NULL)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		slayer_list(printer_aux);
 		exit(EXIT_FAILURE);
 	}
-	printf("%d\n", printer_aux->n);
+
+	printf("%d\n", (printer_aux)->n);
 }
