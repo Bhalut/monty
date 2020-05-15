@@ -13,10 +13,10 @@ void opcode(char *command)
 	    {"push", op_push},
 	    {"pall", op_pall},
 	    {"pint", op_pint},
-	    {"pop", op_pop},
 	    {"swap", op_swap},
+	    /*{"pop", op_pop},
 	    {"add", op_add},
-	    {"nop", op_nop},
+	    {"nop", op_nop},*/
 	    {NULL, NULL},
 	};
 
