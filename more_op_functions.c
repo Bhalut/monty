@@ -63,3 +63,30 @@ void op_nop(stack_t **stack, unsigned int line_number)
 	stack = stack;
 	line_number = line_number;
 }
+/**
+ * op_pop - delete the element on the top of the stack
+ * @stack: pointer to the head of the stack
+ * @line_number: number of the current line
+ *
+ * Return: the number of nodes
+ */
+void op_pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp = *stack;
+
+	line_number = line_number;
+	if (temp == NULL)
+	{
+		slayer_list(slayer.stack_head);
+		free(slayer.getl_info);
+		fclose(slayer.fp_struct);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", slayer.n_lines);
+		exit(EXIT_FAILURE);
+	}
+	*stack = (*stack)->next;
+	if (*stack)
+	{
+		(*stack)->prev = NULL;
+	}
+	free(temp);
+}
