@@ -17,6 +17,10 @@ void opcode(char *command)
 	    {"pop", op_pop},
 	    {"add", op_add},
 	    {"nop", op_nop},
+	    {"sub", op_sub},
+	    {"div", op_div},
+	    {"mul", op_mul},
+	    {"mod", op_mod},
 	    {NULL, NULL},
 	};
 
