@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  * op_add - add two elements on the top of the stack
  * @stack: pointer to the head of the stack
@@ -51,6 +52,7 @@ size_t dlistint_len(stack_t *h)
 	}
 	return (n_nodes);
 }
+
 /**
  * op_nop - do nothing
  * @stack: pointer to the head of the stack
@@ -63,6 +65,7 @@ void op_nop(stack_t **stack, unsigned int line_number)
 	stack = stack;
 	line_number = line_number;
 }
+
 /**
  * op_pop - delete the element on the top of the stack
  * @stack: pointer to the head of the stack
@@ -90,6 +93,7 @@ void op_pop(stack_t **stack, unsigned int line_number)
 	}
 	free(temp);
 }
+
 /**
  * op_sub - sub two elements on the top of the stack
  * @stack: pointer to the head of the stack

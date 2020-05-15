@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  * op_div - add two elements on the top of the stack
  * @stack: pointer to the head of the stack
@@ -37,6 +38,7 @@ void op_div(stack_t **stack, unsigned int line_number)
 		free(temp);
 	}
 }
+
 /**
  * op_mul - add mul elements on the top of the stack
  * @stack: pointer to the head of the stack
@@ -67,6 +69,7 @@ void op_mul(stack_t **stack, unsigned int line_number)
 		free(temp);
 	}
 }
+
 /**
  * op_mod - mod two elements on the top of the stack
  * @stack: pointer to the head of the stack
