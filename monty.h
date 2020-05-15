@@ -76,5 +76,6 @@ void delim_checker(char *str);
 void op_add(stack_t **stack, unsigned int line_number);
 size_t dlistint_len(stack_t *h);
 void op_nop(stack_t **stack, unsigned int line_number);
+void op_pop(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H */
