@@ -71,5 +71,6 @@ char *split_str(char *str_to_split);
 void slayer_list(stack_t *head);
 void is_digit(char *number);
 void opcode(char *command);
+void delim_checker(char *str);
 
 #endif /* MONTY_H */

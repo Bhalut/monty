@@ -29,6 +29,7 @@ int main(int argc, char **argv)
 				    &line_buf_size, slayer.fp_struct)) != EOF)
 	{
 		slayer.n_lines++;
+		delim_checker(slayer.getl_info);
 		split_str(slayer.getl_info);
 		opcode(slayer.getl_info);
 	}
