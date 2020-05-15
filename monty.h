@@ -37,10 +37,9 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
 /**
  * struct hero_s - funtional data for project
- * @command_struct: intruction
+ * @n_lines: lines counter
  * @stack_head: stack head
  * @fp_struct: file
  * @getl_info: line content
@@ -51,27 +50,23 @@ typedef struct instruction_s
  */
 typedef struct hero_s
 {
-	char *command_struct;
+	FILE *fp_struct;
 	stack_t *stack_head;
 	char *getl_info;
-	FILE *fp_struct;
+
 	int node_data;
+	unsigned int n_lines;
 
 } hero_t;
 
-/* Global variable */
-extern hero_t savior;
+extern hero_t slayer;
 
-/* Prototypes */
-int opcode(char *file_line, stack_t **stack, unsigned int n_lines);
-char *get_number(char *str_to_div, unsigned int n_lines);
+/* Aux Functions */
+char *split_str(char *str_to_split);
+void is_digit(char *number);
+void opcode(char *command);
 void op_push(stack_t **stack, unsigned int line_number);
 void op_pall(stack_t **stack, unsigned int line_number);
-void is_digit(char *number, unsigned int n_lines);
-char **str_to_2d(char *buff_str, char del[]);
-void free_dlistint(stack_t *head);
-char *str_div(char *str_to_div);
-void free_grid(char **grid);
-void willy_malloc();
+void slayer_list(stack_t *head);
 
 #endif /* MONTY_H */
