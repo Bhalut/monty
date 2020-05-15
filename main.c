@@ -1,7 +1,5 @@
 #include "monty.h"
-
-hero_t savior;
-
+hero_t slayer;
 /**
  *  main -  interpreter for Monty ByteCodes files
  *  @argc: Number of paramethers
@@ -11,35 +9,31 @@ hero_t savior;
  */
 int main(int argc, char **argv)
 {
-	char *file_name = argv[1];
-	size_t line_buf_size = 0;
 	ssize_t line_size;
-	unsigned int line_count = 0;
-	FILE *fp = NULL;
-	stack_t *main_stack = NULL;
+	size_t line_buf_size = 0;
 
-	savior.stack_head = main_stack;
+	slayer.stack_head = NULL;
+	slayer.n_lines = 0;
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	fp = fopen(file_name, "r");
-	if (!fp)
+	slayer.fp_struct = fopen(argv[1], "r");
+	if (!slayer.fp_struct)
 	{
-		fprintf(stderr, "Error opening file '%s'\n", file_name);
+		fprintf(stderr, "Error opening file '%s'\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	savior.fp_struct = fp;
-	while ((line_size = getline(&savior.getl_info, &line_buf_size, fp)) != EOF)
+	while ((line_size = getline(&slayer.getl_info,
+				    &line_buf_size, slayer.fp_struct)) != EOF)
 	{
-		line_count++;
-		opcode(savior.getl_info, &savior.stack_head, line_count);
+		slayer.n_lines++;
+		split_str(slayer.getl_info);
+		opcode(slayer.getl_info);
 	}
-	free(savior.getl_info);
-	free(savior.command_struct);
-	savior.getl_info = NULL;
-	free_dlistint(savior.stack_head);
-	fclose(fp);
+	free(slayer.getl_info);
+	slayer_list(slayer.stack_head);
+	fclose(slayer.fp_struct);
 	return (EXIT_SUCCESS);
 }
