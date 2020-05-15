@@ -12,10 +12,10 @@ void opcode(char *command)
 	instruction_t opcode_func[] = {
 	    {"push", op_push},
 	    {"pall", op_pall},
+	    {"pint", op_pint},
 	    {NULL, NULL},
 	};
 
-	i = 0;
 	while ((opcode_func[i].opcode != NULL))
 	{
 		if (strcmp(opcode_func[i].opcode, command) == 0)
