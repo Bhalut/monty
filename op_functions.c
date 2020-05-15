@@ -9,7 +9,6 @@
  */
 void op_push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = NULL;
 	stack_t *new = NULL;
 
 	line_number = line_number;
@@ -22,23 +21,15 @@ void op_push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	new->n = slayer.node_data;
-	if (*stack != NULL)
+
+	new->next = *stack;
+	new->prev = NULL;
+	if ((*stack) != NULL)
 	{
-		tmp = *stack;
-		while (tmp->next != NULL)
-		{
-			tmp = tmp->next;
-		}
-		new->prev = tmp;
-		tmp->next = new;
-		new->next = NULL;
+		(*stack)->prev = new;
 	}
-	else
-	{
-		*stack = new;
-		new->next = NULL;
-		new->prev = NULL;
-	}
+
+	*stack = new;
 }
 
 /**
@@ -52,19 +43,13 @@ void op_pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *printer_aux = *stack;
 
+	printer_aux = *stack;
 	line_number = line_number;
-	if (printer_aux == NULL)
-	{
-		return;
-	}
-	while (printer_aux->next != NULL)
-	{
-		printer_aux = printer_aux->next;
-	}
+
 	while (printer_aux != NULL)
 	{
 		printf("%d\n", printer_aux->n);
-		printer_aux = printer_aux->prev;
+		printer_aux = printer_aux->next;
 	}
 }
 
@@ -77,19 +62,12 @@ void op_pall(stack_t **stack, unsigned int line_number)
  */
 void op_pint(stack_t **stack, unsigned int line_number)
 {
-	stack_t *printer_aux = *stack;
-
-	while (printer_aux->next != NULL)
-	{
-		printer_aux = printer_aux->next;
-	}
-
-	if (printer_aux == NULL)
+	if ((*stack) == NULL)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		slayer_list(printer_aux);
+		slayer_list((*stack));
 		exit(EXIT_FAILURE);
 	}
 
-	printf("%d\n", (printer_aux)->n);
+	printf("%d\n", ((*stack))->n);
 }
